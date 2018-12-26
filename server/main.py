@@ -50,7 +50,7 @@ def get_events():
 
     # Update the checksum
     global CHECKSUM
-    CHECKSUM = str(hashlib.sha256(json.dumps(parsed_events)).hexdigest())
+    CHECKSUM = str(hashlib.sha256(json.dumps(parsed_events, indent=4)).hexdigest())
     print("{}".format(CHECKSUM))
 
     return parsed_events
@@ -70,7 +70,7 @@ def readyz():
 
 @app.route("/events", methods=["GET"])
 def events():
-    return jsonify(get_events())
+    return jsonify({'events': get_events(), 'checksum': CHECKSUM})
 
 @app.route("/checksum", methods=["GET"])
 def checksum():
@@ -80,6 +80,8 @@ def main():
     args = parser.parse_args()
     if args.host == "":
         host = "127.0.0.1"
+    else:
+        host = args.host
     global SERVICE_ACCOUNT_FILE
     SERVICE_ACCOUNT_FILE = args.conf_path
     app.run(host=host, port=args.port, debug=args.debug)
