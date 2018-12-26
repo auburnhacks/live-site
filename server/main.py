@@ -1,7 +1,9 @@
 import json
+import time
 import datetime
 import hashlib
 import argparse
+import threading
 from httplib2 import Http
 from googleapiclient.discovery import build
 from oauth2client import file, client, tools
@@ -22,6 +24,20 @@ parser.add_argument("--host", default="", type=str, help="host that the server s
 parser.add_argument("--port", default=9000, type=int, help="port that the server should bind to")
 parser.add_argument("--conf_path", default="./calendar-sa.json", type=str, help="path to the service account credentials for google calendar api")
 parser.add_argument("--debug", default=False, help="enable debugging mode", action="store_true")
+
+
+class Poller(object):
+    def __init__(self, interval=1):
+        self.interval = interval
+        thread = threading.Thread(target=self.run, args=())
+        thread.daemon = True
+        thread.start()
+
+    def run(self):
+        while True:
+            print('Polling for events')
+            get_events()
+            time.sleep(self.interval)
 
 def get_events():
     """
@@ -84,6 +100,7 @@ def main():
         host = args.host
     global SERVICE_ACCOUNT_FILE
     SERVICE_ACCOUNT_FILE = args.conf_path
+    p = Poller(interval=30)
     app.run(host=host, port=args.port, debug=args.debug)
 
 if __name__ == '__main__':
