@@ -20,11 +20,18 @@ app = Flask(__name__)
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--host", default="", type=str, help="host that the server should bind to")
-parser.add_argument("--port", default=9000, type=int, help="port that the server should bind to")
-parser.add_argument("--conf_path", default="./calendar-sa.json", type=str, help="path to the service account credentials for google calendar api")
-parser.add_argument("--debug", default=False, help="enable debugging mode", action="store_true")
-parser.add_argument("--interval", default=20, help="Poll interval to referesh from google calendar api", type=int)
+parser.add_argument("--host", default="", type=str,
+                    help="host that the server should bind to")
+parser.add_argument("--port", default=9000, type=int,
+                    help="port that the server should bind to")
+parser.add_argument("--conf_path", default="./calendar-sa.json", type=str,
+                    help="path to the service account credentials for google" \
+                    "calendar api")
+parser.add_argument("--debug", default=False, help="enable debugging mode",
+                    action="store_true")
+parser.add_argument("--interval", default=20,
+                    help="Poll interval to referesh from google calendar api",
+                    type=int)
 
 
 class Poller(object):
@@ -35,6 +42,7 @@ class Poller(object):
         thread.start()
 
     def run(self):
+        # runs forever
         while True:
             print('Polling for events')
             get_events()
@@ -59,7 +67,8 @@ def get_events():
     for event in events:
         # print(json.dumps(event, indent=4))
         e = {'eventName': event['summary'],
-             'startTime': event['start'].get('dateTime', event['start'].get('date')),
+             'startTime': event['start'].get('dateTime',
+                                             event['start'].get('date')),
              'endTime': event['end'].get('dateTime', event['end'].get('date')),
              'location': event.get('location', ''),
              'description': event.get('description', '')}
@@ -67,7 +76,8 @@ def get_events():
 
     # Update the checksum
     global CHECKSUM
-    CHECKSUM = str(hashlib.sha256(json.dumps(parsed_events, indent=4)).hexdigest())
+    CHECKSUM = str(hashlib.sha256(json.dumps(parsed_events,
+                                             indent=4)).hexdigest())
     print("{}".format(CHECKSUM))
 
     return parsed_events
