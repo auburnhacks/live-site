@@ -24,6 +24,7 @@ parser.add_argument("--host", default="", type=str, help="host that the server s
 parser.add_argument("--port", default=9000, type=int, help="port that the server should bind to")
 parser.add_argument("--conf_path", default="./calendar-sa.json", type=str, help="path to the service account credentials for google calendar api")
 parser.add_argument("--debug", default=False, help="enable debugging mode", action="store_true")
+parser.add_argument("--interval", default=20, help="Poll interval to referesh from google calendar api", type=int)
 
 
 class Poller(object):
@@ -47,7 +48,7 @@ def get_events():
         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build(serviceName='calendar', version='v3', credentials=creds)
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the upcoming 10 events from {}'.format(now))
+    # print('Getting the upcoming 10 events from {}'.format(now))
     events_result = service.events().list(calendarId=CALENDAR_ID, timeMin=now,
                                         maxResults=100, singleEvents=True,
                                         orderBy='startTime').execute()
@@ -100,8 +101,10 @@ def main():
         host = args.host
     global SERVICE_ACCOUNT_FILE
     SERVICE_ACCOUNT_FILE = args.conf_path
-    p = Poller(interval=30)
+    print('will poll every {} seconds'.format(args.interval))
+    p = Poller(interval=args.interval)
     app.run(host=host, port=args.port, debug=args.debug)
 
 if __name__ == '__main__':
     main()
+

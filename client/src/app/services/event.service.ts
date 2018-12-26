@@ -30,25 +30,26 @@ export class EventService {
             } else {
               console.log("state is stale!");
               // only fetch the events if the local cache is stale
-              this.httpClient.get<EventResponse>(environment.apiBase + "/events",
-              this.getHttpOptions())
-              .subscribe((events: EventResponse) => observer.next(events),
+              this.fetchEvents()
+                .subscribe((events: EventResponse) => observer.next(events),
                 (error: any) => observer.error(error),
-                () => observer.complete()
-              );
+                () => observer.complete());
             }
           });
       } else {
         // only fetch the events if the local cache is stale
-        this.httpClient.get<EventResponse>(environment.apiBase + "/events",
-        this.getHttpOptions())
-        .subscribe((events: EventResponse) => observer.next(events),
+        this.fetchEvents()
+          .subscribe((events: EventResponse) => observer.next(events),
           (error: any) => observer.error(error),
-          () => observer.complete()
-        );
+          () => observer.complete());
       }
     });
     return events;
+  }
+
+  private fetchEvents(): Observable<EventResponse> {
+    return this.httpClient.get<EventResponse>(environment.apiBase + "/events",
+      this.getHttpOptions())
   }
 
   public saveChecksum = (checksum) => {
