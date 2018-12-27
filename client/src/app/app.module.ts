@@ -10,7 +10,8 @@ import { EventService } from './services/event.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-]
+];
+
 @NgModule({
   declarations: [
     AppComponent,

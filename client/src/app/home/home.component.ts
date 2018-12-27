@@ -10,8 +10,8 @@ import { HackEvent, EventResponse } from '../models/event.model';
 export class HomeComponent implements OnInit {
 
   public events: HackEvent[];
-  public tableHeaders: string[] = [ "Event Name", "Description", "Start Time",
-                                  "End Time", "Location" ];
+  public tableHeaders: string[] = [ 'Event Name', 'Description', 'Start Time',
+                                  'End Time', 'Location' ];
 
   constructor(private eventService: EventService) { }
 
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
         this.eventService.saveChecksum(resp['checksum']);
       },
       (error: any) => console.log(error),
-      () => { this.eventService.saveState(this.events) });
+      () => { this.eventService.saveState(this.events); });
   }
 
 }
