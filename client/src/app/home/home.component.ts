@@ -10,6 +10,8 @@ import { HackEvent, EventResponse } from '../models/event.model';
 export class HomeComponent implements OnInit {
 
   public events: HackEvent[];
+  public tableHeaders: string[] = [ "Event Name", "Description", "Start Time",
+                                  "End Time", "Location" ];
 
   constructor(private eventService: EventService) { }
 

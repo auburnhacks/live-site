@@ -1,1 +1,12 @@
-<p *ngFor="let event of events">{{ event.eventName }}</p>
+<table style="width: 100%">
+    <tr>
+        <th *ngFor="let header of tableHeaders">{{ header }}</th>
+    </tr>
+    <tr *ngFor="let event of events">
+        <td>{{ event.eventName }}</td>
+        <td><div [innerHTML]="event.description"></div></td>
+        <td>{{ event.startTime }}</td>
+        <td>{{ event.endTime }}</td>
+        <td>{{ event.location }}</td>
+    </tr>
+</table>
