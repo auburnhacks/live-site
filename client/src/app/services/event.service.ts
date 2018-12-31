@@ -17,7 +17,7 @@ export class EventService {
     const events = new Observable<EventResponse>((observer) => {
       let localState = JSON.parse(localStorage.getItem("checksum_events"));
       if (localState) {
-        let er: EventResponse = { checksum: localState.checksum,
+        const er: EventResponse = { checksum: localState.checksum,
           events: localState.events};
         observer.next(er);
         this.httpClient.get(environment.apiBase + "/checksum",
