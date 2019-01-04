@@ -76,8 +76,8 @@ def get_events():
 
     # Update the checksum
     global CHECKSUM
-    CHECKSUM = str(hashlib.sha256(json.dumps(parsed_events,
-                                             indent=4)).hexdigest())
+    e = str(json.dumps(parsed_events, indent=4)).encode('utf-8')
+    CHECKSUM = hashlib.sha256(e).hexdigest()
     print("{}".format(CHECKSUM))
 
     return parsed_events
