@@ -104,6 +104,7 @@ def checksum():
     return jsonify({'checksum': CHECKSUM})
 
 def main():
+    # parse cmd args before starting application
     args = parser.parse_args()
     if args.host == "":
         host = "127.0.0.1"
