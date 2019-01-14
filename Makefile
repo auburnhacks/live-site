@@ -13,4 +13,5 @@ server:
 .PHONY: client
 client:
 	@echo "Building Client\n"
-	cd ./client; ng serve -o
+	# Use npm start as it uses angular proxy
+	cd ./client; npm start
