@@ -1,3 +1,31 @@
 table, th, td {
-    border: 1px solid black;
+    width: 100%;
 }
+.main-toolbar {
+    height: 320px;
+}
+.main-toolbar .main-toolbar-row img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 50%;
+    height: auto;
+    margin-top: 15%;
+}
+
+.welcome {
+    margin: auto;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .main-toolbar mat-toolbar-row img {
+        margin-top: 15%;
+    }
+}
+
+@media only screen and (max-width: 900px) {}
+
+@media only screen and (max-width: 768px) {}
+
+@media only screen and (max-width: 425px) {}

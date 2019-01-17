@@ -1,12 +1,51 @@
-<table style="width: 100%">
-    <tr>
-        <th *ngFor="let header of tableHeaders">{{ header }}</th>
-    </tr>
-    <tr *ngFor="let event of events">
-        <td>{{ event.eventName }}</td>
-        <td><div [innerHTML]="event.description"></div></td>
-        <td>{{ event.startTime | date:'medium' }}</td>
-        <td>{{ event.endTime | date: 'medium' }}</td>
-        <td>{{ event.location }}</td>
-    </tr>
-</table>
+<mat-toolbar class="main-toolbar">
+    <mat-toolbar-row class="main-toolbar-row">
+        <img src="https://auburnhacks.com/images/brand/logo.svg" />
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+        <h1 class="welcome">Welcome to AuburnHacks 2019</h1>
+    </mat-card-header>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <h2 class="welcome">Schedule</h2>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="eventName">
+                <mat-header-cell *matHeaderCellDef>Event Name</mat-header-cell>
+                <mat-cell *matCellDef="let event">{{ event.eventName }}</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                <mat-cell *matCellDef="let event">
+                    <div [innerHTML]="event.description"></div>
+                </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="startTime">
+                <mat-header-cell *matHeaderCellDef>Start Time</mat-header-cell>
+                <mat-cell *matCellDef="let event">{{ event.startTime | date:'medium' }}</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="endTime">
+                <mat-header-cell *matHeaderCellDef>End Time</mat-header-cell>
+                <mat-cell *matCellDef="let event">{{ event.endTime | date:'medium' }}</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="location">
+                <mat-header-cell *matHeaderCellDef>Location</mat-header-cell>
+                <mat-cell *matCellDef="let event">{{ event.location }}</mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+        </table>
+    </mat-card-content>
+</mat-card>
