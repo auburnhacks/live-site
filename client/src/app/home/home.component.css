@@ -1,28 +1,55 @@
 table, th, td {
     width: 100%;
 }
-.main-toolbar {
-    height: 320px;
+
+.toolbar {
+    height: auto;
+    background: none;
 }
-.main-toolbar .main-toolbar-row img {
+.schedule {
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
-    display: block;
-    width: 50%;
-    height: auto;
-    margin-top: 15%;
 }
-
+.stepper {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.toolbar .row {
+    margin: 10px;
+}
+.toolbar .row a {
+    margin: 5px;
+    background-color: #f68026;
+    color: white;
+    border-radius: 50px;
+}
+.toolbar .row a:hover {
+    background-color: #dd550c;
+}
 .welcome {
-    margin: auto;
     text-align: center;
+    width: 70%;
+    margin: auto;
+    color: white;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+.center {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+button {
+    margin: 5px;
+    border-radius: 50px;
+}
+iframe {
+    width: 100%;
 }
 
-@media only screen and (max-width: 1200px) {
-    .main-toolbar mat-toolbar-row img {
-        margin-top: 15%;
-    }
-}
+@media only screen and (max-width: 1200px) {}
 
 @media only screen and (max-width: 900px) {}
 
