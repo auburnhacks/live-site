@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { EventService } from './services/event.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 
 const appRoutes: Routes = [
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,

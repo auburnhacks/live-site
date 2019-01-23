@@ -1,0 +1,39 @@
+<mat-card class="schedule">
+  <mat-card-header>
+      <h1 class="title">Schedule</h1>
+  </mat-card-header>
+  <br>
+  <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z4" style="margin:auto;">
+          <ng-container matColumnDef="eventName">
+              <mat-header-cell *matHeaderCellDef>Activity Name</mat-header-cell>
+              <mat-cell *matCellDef="let event">{{ event.eventName }}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="description">
+              <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+              <mat-cell *matCellDef="let event">
+                  <div [innerHTML]="event.description"></div>
+              </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="startTime">
+              <mat-header-cell *matHeaderCellDef>Start Time</mat-header-cell>
+              <mat-cell *matCellDef="let event">{{ event.startTime | date:'medium' }}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="endTime">
+              <mat-header-cell *matHeaderCellDef>End Time</mat-header-cell>
+              <mat-cell *matCellDef="let event">{{ event.endTime | date:'medium' }}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="location">
+              <mat-header-cell *matHeaderCellDef>Location</mat-header-cell>
+              <mat-cell *matCellDef="let event">{{ event.location }}</mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+      </table>
+  </mat-card-content>
+</mat-card>

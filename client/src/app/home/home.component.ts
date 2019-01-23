@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../services/event.service';
-import { HackEvent, EventResponse } from '../models/event.model';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +6,14 @@ import { HackEvent, EventResponse } from '../models/event.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  breakpoint: number;
+  constructor() { }
   
-  public tableColumns: string[] = [ 'eventName', 'description', 'startTime', 
-                                  'endTime', 'location' ];
-  public dataSource = [];
-
-  constructor(private eventService: EventService) { }
-
   ngOnInit() {
-    this.eventService.getEvents()
-      .subscribe((resp: EventResponse) => {
-        // table data source
-        this.dataSource = resp.events;
-        this.eventService.saveChecksum(resp['checksum']);
-      },
-      (error: any) => console.log(error),
-      () => { this.eventService.saveState(this.dataSource); });
+    this.breakpoint = (window.innerWidth <= 425) ? 1 : 4;
   }
 
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 425) ? 1 : 4;
+  }
 }

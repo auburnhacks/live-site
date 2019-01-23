@@ -1,21 +1,47 @@
-table, th, td {
-    width: 100%;
-}
-
 .toolbar {
     height: auto;
-    background: none;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 1;
 }
-.schedule {
+
+.prompt, .staff, .stepper {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
-.stepper {
-    width: 60%;
+
+mat-grid-list mat-grid-tile a {
+    transition: all 300ms;
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
+}
+
+mat-grid-list mat-grid-tile a img {
     margin-left: auto;
     margin-right: auto;
+    display: block;
 }
+
+mat-grid-list mat-grid-tile a:hover, mat-grid-list mat-grid-tile a:focus {
+    transform: scale(1.3);
+    -moz-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+}
+
+.staff mat-grid-tile a img {
+    width: 250px;
+}
+
+#circle {
+    border-radius: 50px;
+    display: block;
+}
+
 .toolbar .row {
     margin: 10px;
 }
@@ -31,7 +57,6 @@ table, th, td {
 .welcome {
     text-align: center;
     width: 70%;
-    margin: auto;
     color: white;
 }
 .spacer {
@@ -44,15 +69,14 @@ table, th, td {
 button {
     margin: 5px;
     border-radius: 50px;
+    transition: all 280ms;
 }
-iframe {
-    width: 100%;
+button:hover {
+    filter: brightness(90%);
 }
 
-@media only screen and (max-width: 1200px) {}
-
-@media only screen and (max-width: 900px) {}
-
-@media only screen and (max-width: 768px) {}
-
-@media only screen and (max-width: 425px) {}
+@media only screen and (max-width: 1024px) {
+    .prompt, .staff, .stepper, .welcome {
+        width: 90%;
+    } 
+}

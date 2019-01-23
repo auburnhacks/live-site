@@ -1,21 +1,16 @@
-<span class="header">
-    <mat-toolbar class="toolbar">
-        <mat-toolbar-row class="row">
-            <img src="../../assets/logo.svg" width="75px" style="margin-left:auto;margin-right:auto;">
-            <img src="../../assets/title.png" width="200px">
-            <span class="spacer"></span>
-            <a mat-raised-button href="https://auburnhacks.com" target="_blank">Homepage</a>
-            <a mat-raised-button href="https://registration.auburnhacks.com" target="_blank">Registration</a>
-            <a mat-raised-button href="https://crowdforge.io/hackathons/AuburnHacks" target="_blank">Team Building</a>
-            <a mat-raised-button href="#schedule">Schedule</a>
-        </mat-toolbar-row>
-    </mat-toolbar>
-</span>
+<mat-toolbar class="toolbar">
+    <mat-toolbar-row class="row">
+        <img src="../../assets/logo.svg" width="75px" style="margin-right: 10px;">
+        <img src="../../assets/title.png" width="200px">
+        <span class="spacer"></span>
+        <a mat-raised-button href="https://auburnhacks.com" target="_blank">Homepage</a>
+    </mat-toolbar-row>
+</mat-toolbar>
 
 <br>
 
 <span class="welcome">
-    <h1 class="title" style="color:white;">Welcome to AuburnHacks Live!</h1>
+    <h1 class="title" style="color: white;padding-top: 80px;">Thanks for choosing to attend AuburnHacks 2019!</h1>
 </span>
 
 <br>
@@ -24,28 +19,48 @@
     <mat-card-header>
         <h1 class="title">Information</h1>
     </mat-card-header>
-    <mat-horizontal-stepper #stepper>
+    <mat-vertical-stepper #stepper>
         <mat-step [completed]="false">
             <ng-template matStepLabel>Important Links</ng-template>
-            <p>Slack: <a href="https://auburnhacks.slack.com" target="_blank">auburnhacks.slack.com</a></p>
-            <p>Devpost: <a href="https://auburnhacks-2019.devpost.com/" target="_blank">auburnhacks-2019.devpost.com</a></p>
-            <p>Team Building: <a href="https://crowdforge.io/hackathons/AuburnHacks" target="_blank">crowdforge.io/AuburnHacks</a></p>
-            <p>Jumpstart: <a href="https://jumpstart.me/r/AuburnHacks" target="_blank">jumpstart.me/AuburnHacks</a></p>
+
+            <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
+                <mat-grid-tile matTooltip="Crowdforge">
+                    <a href="https://crowdforge.io/hackathons/AuburnHacks" target="_blank">
+                        <img src="../../assets/Crowdforge.svg" width="50%">
+                    </a>
+                </mat-grid-tile>
+                <mat-grid-tile matTooltip="Devpost">
+                    <a href="https://auburnhacks-2019.devpost.com/" target="_blank">
+                        <img src="../../assets/Devpost.svg" width="40%">
+                    </a>
+                </mat-grid-tile>
+                <mat-grid-tile matTooltip="Jumpstart">
+                    <a href="https://jumpstart.me/r/AuburnHacks" target="_blank">
+                        <img src="../../assets/Jumpstart.svg" width="40%">
+                    </a>
+                </mat-grid-tile>
+                <mat-grid-tile matTooltip="Slack">
+                    <a href="https://auburnhacks.slack.com" target="_blank">
+                        <img src="../../assets/Slack.svg" width="80%">
+                    </a>
+                </mat-grid-tile>
+            </mat-grid-list>
+
             <div>
                 <button mat-raised-button matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step [completed]="false">
-            <ng-template matStepLabel>Schedule</ng-template>
-            <p>Live schedule is given below.</p>
+            <ng-template matStepLabel>Slides</ng-template>
+            <p>List all slides here</p>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
                 <button mat-raised-button matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step [completed]="false">
-            <ng-template matStepLabel>Tasks</ng-template>
-            <p>Hacking is great, but do not forget to:</p>
+            <ng-template matStepLabel>Hacker To-Do List</ng-template>
+            <p>Hacking is fun and all, but do not forget to:</p>
             <mat-checkbox>Eat.</mat-checkbox><br>
             <mat-checkbox>Hydrate.</mat-checkbox><br>
             <mat-checkbox>Sleep.</mat-checkbox><br>
@@ -57,54 +72,108 @@
             </div>
         </mat-step>
         <mat-step [completed]="false">
-            <ng-template matStepLabel>Brainteasers</ng-template>
-                <p>Brainteasers will be released every two hours.</p>
+            <ng-template matStepLabel>Reimbursements</ng-template>
+                <p>List all that info here.</p>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
-                <button mat-raised-button (click)="stepper.reset()">Reset</button>
+                <button mat-raised-button (click)="stepper.reset()">Next</button>
             </div>
         </mat-step>
-    </mat-horizontal-stepper>
+    </mat-vertical-stepper>
 </mat-card>
 
 <br>
 
-<mat-card class="schedule">
+<mat-card class="prompt">
     <mat-card-header>
-        <h1 class="title">Schedule</h1>
+        <h1 class="title">Sponsor Prompts</h1>
     </mat-card-header>
-    <br>
-    <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z4" style="margin:auto;">
-            <ng-container matColumnDef="eventName">
-                <mat-header-cell *matHeaderCellDef>Activity Name</mat-header-cell>
-                <mat-cell *matCellDef="let event">{{ event.eventName }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="description">
-                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
-                <mat-cell *matCellDef="let event">
-                    <div [innerHTML]="event.description"></div>
-                </mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="startTime">
-                <mat-header-cell *matHeaderCellDef>Start Time</mat-header-cell>
-                <mat-cell *matCellDef="let event">{{ event.startTime | date:'medium' }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="endTime">
-                <mat-header-cell *matHeaderCellDef>End Time</mat-header-cell>
-                <mat-cell *matCellDef="let event">{{ event.endTime | date:'medium' }}</mat-cell>
-            </ng-container>
-        
-            <ng-container matColumnDef="location">
-                <mat-header-cell *matHeaderCellDef>Location</mat-header-cell>
-                <mat-cell *matCellDef="let event">{{ event.location }}</mat-cell>
-            </ng-container>
-        
-            <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
-        </table>
-    </mat-card-content>
+
+    <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Bentley Systems
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+            <mat-grid-list cols="4" rowHeight="2:1">
+                <mat-grid-tile [colspan]="1" [rowspan]="1"><img src="https://auburnhacks.com/images/sponsors/BentleySystems.svg" width="80%"></mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1"><p>Add image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the prompt</p></mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              TSYS
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+            <mat-grid-list cols="4" rowHeight="2:1">
+                <mat-grid-tile [colspan]="1" [rowspan]="1"><img src="https://auburnhacks.com/images/sponsors/Tsys.svg" width="80%"></mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1"><p>Add image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the prompt</p></mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                Workiva
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-grid-list cols="4" rowHeight="2:1">
+                <mat-grid-tile [colspan]="1" [rowspan]="1"><img src="https://auburnhacks.com/images/sponsors/Workiva.svg" width="80%"></mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1"><p>Add image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the prompt</p></mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+
+    </mat-accordion>
 </mat-card>
+
+<br>
+
+<mat-card class="staff">
+    <mat-card-header>
+        <h1 class="title">Need Assistance?</h1>
+    </mat-card-header>
+    <p>Look out for any of our staff members, and they will be happy to assist you!
+    </p>
+
+    <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
+        <mat-grid-tile matTooltip="Jeriel Ng">
+            <a href="//" target="_blank">
+                <img id="circle" src="../../assets/Jeriel.png">
+            </a>
+        </mat-grid-tile>
+        <mat-grid-tile matTooltip="Taric Jain">
+            <a href="//" target="_blank">
+                <img id="circle" src="../../assets/Taric.png">
+            </a>
+        </mat-grid-tile>
+        <mat-grid-tile matTooltip="Sai Kiran Dasika">
+            <a href="//" target="_blank">
+                <img id="circle" src="../../assets/Sai.png">
+            </a>
+        </mat-grid-tile>
+        <mat-grid-tile matTooltip="Dvija Patel">
+            <a href="//" target="_blank">
+                <img id="circle" src="../../assets/Dvija.png">
+            </a>
+        </mat-grid-tile>
+        <mat-grid-tile matTooltip="Zach DeBardlebon">
+            <a href="//" target="_blank">
+                <img id="circle" src="../../assets/Zach.png">
+            </a>
+        </mat-grid-tile>
+        <mat-grid-tile matTooltip="Bradley Probert">
+            <a href="//" target="_blank">
+                <img id="circle" src="../../assets/Bradley.png">
+            </a>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</mat-card>
+
+<br>
+
+<app-schedule></app-schedule>
