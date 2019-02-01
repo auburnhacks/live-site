@@ -50,14 +50,14 @@
                 <button mat-raised-button matStepperNext>Next</button>
             </div>
         </mat-step>
-        <mat-step [completed]="false">
+        <!-- <mat-step [completed]="false">
             <ng-template matStepLabel>Slides</ng-template>
             <p>List all slides here</p>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
                 <button mat-raised-button matStepperNext>Next</button>
             </div>
-        </mat-step>
+        </mat-step> -->
         <mat-step [completed]="false">
             <ng-template matStepLabel>Hacker To-Do List</ng-template>
             <p>Hacking is fun and all, but do not forget to:</p>
@@ -71,14 +71,14 @@
                 <button mat-raised-button matStepperNext>Next</button>
             </div>
         </mat-step>
-        <mat-step [completed]="false">
+        <!-- <mat-step [completed]="false">
             <ng-template matStepLabel>Reimbursements</ng-template>
                 <p>List all that info here.</p>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
                 <button mat-raised-button (click)="stepper.reset()">Next</button>
             </div>
-        </mat-step>
+        </mat-step> -->
     </mat-vertical-stepper>
 </mat-card>
 
@@ -86,7 +86,7 @@
 
 <mat-card class="prompt">
     <mat-card-header>
-        <h1 class="title">Sponsor Prompts</h1>
+        <h1 class="title">Prompts</h1>
     </mat-card-header>
 
     <mat-accordion>
@@ -94,12 +94,30 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Bentley Systems
+              AuburnHacks Prompt
             </mat-panel-title>
           </mat-expansion-panel-header>
-            <mat-grid-list cols="4" rowHeight="2:1">
-                <mat-grid-tile [colspan]="1" [rowspan]="1"><img src="https://auburnhacks.com/images/sponsors/BentleySystems.svg" width="80%"></mat-grid-tile>
-                <mat-grid-tile [colspan]="3" [rowspan]="1"><p>Add image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the prompt</p></mat-grid-tile>
+            <mat-grid-list cols="4" rowHeight="1:1">
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <img src="https://auburnhacks.com/images/brand/logo.svg" width="80%">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <p>
+                        In 2025, a medical crisis broke out at the annual 
+                        Innovation City Tech Fair. Hundreds of civilians were 
+                        injured in a massive earthquake, and many lost their 
+                        lives due to traffic overload and a lack in medical
+                        resources. <br />
+                        To be more readily prepared for future incidents, the 
+                        city council is looking for solutions that will improve 
+                        or re-imagine city infrastructure through either 
+                        transportation or healthcare.
+                        In your team, design and implement a new concept that 
+                        will help Innovation City live up to its name. Any 
+                        solution from software to hardware is welcome, as long 
+                        as it is creative and original work!
+                    </p>
+                </mat-grid-tile>
             </mat-grid-list>
         </mat-expansion-panel>
 
@@ -111,19 +129,12 @@
           </mat-expansion-panel-header>
             <mat-grid-list cols="4" rowHeight="2:1">
                 <mat-grid-tile [colspan]="1" [rowspan]="1"><img src="https://auburnhacks.com/images/sponsors/Tsys.svg" width="80%"></mat-grid-tile>
-                <mat-grid-tile [colspan]="3" [rowspan]="1"><p>Add image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the prompt</p></mat-grid-tile>
-            </mat-grid-list>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                Workiva
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-grid-list cols="4" rowHeight="2:1">
-                <mat-grid-tile [colspan]="1" [rowspan]="1"><img src="https://auburnhacks.com/images/sponsors/Workiva.svg" width="80%"></mat-grid-tile>
-                <mat-grid-tile [colspan]="3" [rowspan]="1"><p>Add image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the promptAdd image here and then the prompt</p></mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <p>
+                        Please check the channel #prompts to find the TSYS
+                        prompt.
+                    </p>
+                </mat-grid-tile>
             </mat-grid-list>
         </mat-expansion-panel>
 
@@ -132,6 +143,10 @@
 
 <br>
 
+<app-schedule></app-schedule>
+
+<br />
+
 <mat-card class="staff">
     <mat-card-header>
         <h1 class="title">Need Assistance?</h1>
@@ -139,7 +154,7 @@
     <p>Look out for any of our staff members, and they will be happy to assist you!
     </p>
 
-    <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
+    <mat-grid-list [cols]="breakpoint" rowHeight="1:1" (window:resize)="onResize($event)">
         <mat-grid-tile matTooltip="Jeriel Ng">
             <a href="//" target="_blank">
                 <img id="circle" src="../../assets/Jeriel.png">
@@ -175,5 +190,3 @@
 </mat-card>
 
 <br>
-
-<app-schedule></app-schedule>

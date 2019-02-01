@@ -37,11 +37,6 @@ mat-grid-list mat-grid-tile a:hover, mat-grid-list mat-grid-tile a:focus {
     width: 250px;
 }
 
-#circle {
-    border-radius: 50px;
-    display: block;
-}
-
 .toolbar .row {
     margin: 10px;
 }
