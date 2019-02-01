@@ -3,7 +3,7 @@
         <img src="../../assets/logo.svg" width="75px" style="margin-right: 10px;">
         <img src="../../assets/title.png" width="200px">
         <span class="spacer"></span>
-        <a mat-raised-button href="https://auburnhacks.com" target="_blank">Homepage</a>
+        <!-- <a mat-raised-button href="https://auburnhacks.com" target="_blank">Homepage</a> -->
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -51,14 +51,6 @@
             </div>
         </mat-step>
         <mat-step [completed]="false">
-            <ng-template matStepLabel>Slides</ng-template>
-            <p>List all slides here</p>
-            <div>
-                <button mat-raised-button matStepperPrevious>Back</button>
-                <button mat-raised-button matStepperNext>Next</button>
-            </div>
-        </mat-step>
-        <mat-step [completed]="false">
             <ng-template matStepLabel>Hacker To-Do List</ng-template>
             <p>Hacking is fun and all, but do not forget to:</p>
             <mat-checkbox>Eat.</mat-checkbox><br>
@@ -71,14 +63,6 @@
                 <button mat-raised-button matStepperNext>Next</button>
             </div>
         </mat-step>
-        <mat-step [completed]="false">
-            <ng-template matStepLabel>Reimbursements</ng-template>
-                <p>List all that info here.</p>
-            <div>
-                <button mat-raised-button matStepperPrevious>Back</button>
-                <button mat-raised-button (click)="stepper.reset()">Next</button>
-            </div>
-        </mat-step>
     </mat-vertical-stepper>
 </mat-card>
 
@@ -87,7 +71,7 @@
 <mat-card class="prompt">
     <mat-card-header>
         <mat-card-title>
-            <h1 class="title">Sponsor Prompts</h1>
+            <h1 class="title">Prompts</h1>
         </mat-card-title>
         <mat-card-subtitle>
             Please check back later to view the prompts.
@@ -96,6 +80,10 @@
 </mat-card>
 
 <br>
+
+<app-schedule></app-schedule>
+
+<br />
 
 <mat-card class="staff">
     <mat-card-header>
@@ -140,5 +128,3 @@
 </mat-card>
 
 <br>
-
-<app-schedule></app-schedule>
